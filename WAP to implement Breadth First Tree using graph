@@ -1,0 +1,33 @@
+from collections import deque
+
+def bfs(graph, start):
+    visited = set()         
+    queue = deque([start])  
+    result = []             
+
+    while queue:
+        node = queue.popleft()   
+        if node not in visited:
+            visited.add(node)
+            result.append(node)
+
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    queue.append(neighbor)
+
+    return result
+
+
+graph = {
+    'A': ['C', 'A'],
+    'B': ['R', 'O'],
+    'C': ['C'],
+    'D': [],
+    'E': ['P'],
+    'F': []
+}
+
+start_node = 'A'
+print ("Carol Pillai S104")
+print("Breadth First Traversal starting from node", start_node, ":")
+print(bfs(graph, start_node))
